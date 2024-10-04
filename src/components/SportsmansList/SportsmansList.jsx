@@ -3,12 +3,22 @@ import SearchPanel from './SearchPanel/SearchPanel';
 import './SportsmansList.css';
 import SportsmansListItem from './SportsmansListItem/SportsmansListItem';
 
-const SportsmansList = () => {
+const SportsmansList = ({data}) => {
     return (
         <div>
             <SearchPanel/>
             <SearchFilter/>
-            <SportsmansListItem/>
+            
+            <div className='list-group'>
+                {data.map((item) => {
+                    const {id, ...otherProps} = item;
+                    return (
+                        <SportsmansListItem
+                        key = {id}
+                        {...otherProps}/>
+                    )
+                })}
+            </div>
 
         </div>
     )
