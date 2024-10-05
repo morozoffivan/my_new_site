@@ -1,9 +1,10 @@
+import AddForm from './AddForm/AddForm';
 import SearchFilter from './SearchFilter/SearchFilter';
 import SearchPanel from './SearchPanel/SearchPanel';
 import './SportsmansList.css';
 import SportsmansListItem from './SportsmansListItem/SportsmansListItem';
 
-const SportsmansList = ({data}) => {
+const SportsmansList = ({data, toggleProp}) => {
     return (
         <div>
             <SearchPanel/>
@@ -15,11 +16,13 @@ const SportsmansList = ({data}) => {
                     return (
                         <SportsmansListItem
                         key = {id}
-                        {...otherProps}/>
+                        {...otherProps}
+                        toggleProp={(e) => {toggleProp(id, e.currentTarget.getAttribute('data-toggle'))}}/>
                     )
                 })}
             </div>
-
+            
+            <AddForm/>
         </div>
     )
 

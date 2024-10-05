@@ -19,6 +19,17 @@ class App extends Component  {
                 ],
         }
     }
+
+    toggleProp = (id, prop) => {
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id === id) {
+                    return {...item, [prop]: !item[prop]}
+                }
+                return item;
+            })
+        }))
+    } 
     render() {
         const {data} = this.state;
         return (
@@ -26,7 +37,9 @@ class App extends Component  {
             <Header/>
             <Bio/>
             <Gallery/>
-            <SportsmansList data = {data}/>
+            <SportsmansList 
+            data = {data}
+            toggleProp = {this.toggleProp}/>
             <Footer/>
         </div>
         )
